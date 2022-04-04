@@ -20,13 +20,29 @@ public class GopMang {
         }
         System.out.println(Arrays.toString(array2));
 
-         int[] array3 = new int[10];
+        System.out.print(Arrays.toString(newArray(array1,array2)));
+
+//         int[] array3 = new int[10];
+
+
+//        for (int i = 0; i < 5 ; i++) {
+//            array3[i] = array1[i];
+//        }
+//        for (int i = 0; i <5 ; i++) {
+//            array3[array2.length + i ] = array2[i];
+//        }
+//        System.out.println(Arrays.toString(array3));
+
+    }
+
+    public static int[] newArray(int[] arrayA , int[] arrayB ){
+        int [] arrayC = new int [arrayA.length + arrayB.length];
         for (int i = 0; i < 5 ; i++) {
-            array3[i] = array1[i];
+            arrayC[i] = arrayA[i];
         }
         for (int i = 0; i <5 ; i++) {
-            array3[array2.length + i ] = array2[i];
+            arrayC [ arrayB.length + i ] = arrayB [i];
         }
-        System.out.println(Arrays.toString(array3));
+        return arrayC;
     }
 }
