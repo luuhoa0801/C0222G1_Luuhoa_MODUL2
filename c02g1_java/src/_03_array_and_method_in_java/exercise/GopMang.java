@@ -34,7 +34,6 @@ public class GopMang {
 //        System.out.println(Arrays.toString(array3));
 
     }
-
     public static int[] newArray(int[] arrayA , int[] arrayB ){
         int [] arrayC = new int [arrayA.length + arrayB.length];
         for (int i = 0; i < 5 ; i++) {
