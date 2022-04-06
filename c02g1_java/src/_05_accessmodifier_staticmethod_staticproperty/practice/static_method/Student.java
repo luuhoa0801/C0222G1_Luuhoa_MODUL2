@@ -11,4 +11,9 @@ public class Student {
     static void  change(){
         college = "CODEGYM";
     }
+    void display(){
+        System.out.println(rollno + " "+ name + " "+ college);
+    }
+
 }
+
