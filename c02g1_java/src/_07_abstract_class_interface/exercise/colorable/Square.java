@@ -3,10 +3,7 @@ package _07_abstract_class_interface.exercise.colorable;
 public class Square extends Shape implements Colorable {
     private double side;
 
-    @Override
-    public void howToColor() {
-        System.out.println(" Color all four sides..");
-    }
+
 
     public Square(double side) {
         this.side = side;
@@ -33,6 +30,10 @@ public class Square extends Shape implements Colorable {
     @Override
     public String toString() {
         return "Square { " + super.toString() +
-                " side=" + side + getArea()+" }";
+                " side=" + side +" "+ getArea()+" }";
+    }
+    @Override
+    public void howToColor() {
+        System.out.println(" Color all four sides..");
     }
 }

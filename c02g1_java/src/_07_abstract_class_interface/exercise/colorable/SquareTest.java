@@ -5,8 +5,8 @@ public class SquareTest {
         Square square = new Square();
         System.out.println(square);
         Square square1 = new Square("bue",true,5);
-        square1.howToColor();
         System.out.println(square1);
+        square1.howToColor();
     }
 
 }

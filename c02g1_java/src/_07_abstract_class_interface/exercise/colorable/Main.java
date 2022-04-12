@@ -8,12 +8,11 @@ public class Main {
         shapes[2] = new Circle("green",true,3);
         for (Shape item:shapes) {
 //            System.out.println(item);
-            if ( item instanceof Square){
+            if ( item instanceof Colorable){
                 Square square = (Square) item;
                 System.out.println(item);
                 square.howToColor();
             }
         }
-
     }
 }
