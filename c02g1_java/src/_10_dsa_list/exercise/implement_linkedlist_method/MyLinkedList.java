@@ -142,5 +142,5 @@ public class MyLinkedList<E> {
         }
         return returnLinklist;
     }
-    
+
 }
