@@ -11,15 +11,18 @@ public class StringPalindrome {
         stringArray = string.split("");
         Stack<String> stack = new Stack<>();
         Queue<String> queue = new LinkedList<>();
+        String string1 = "";
+        String string2 = "";
         for (int i = 0; i <stringArray.length; i++) {
             stack.push(stringArray[i].toLowerCase());
-        }
-        System.out.println(stack);
-        for (int i = stringArray.length -1; i >=0 ; i--) {
             queue.add(stringArray[i].toLowerCase());
         }
-        System.out.println(queue);
-        if (stack.equals(queue)){
+        for (int i = 0; i <stringArray.length ; i++) {
+            string1 += stack.pop();
+            string2 += queue.poll();
+        }
+
+        if (string1.equals(string2)){
             System.out.println("Là chuỗi Palindrome ");
         }else {
             System.out.println("Không phải là chuỗi Palindrome");

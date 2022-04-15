@@ -3,7 +3,7 @@ package test.demo1;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class NewPerson {
+public class Main {
     static Scanner scanner = new Scanner(System.in);
     static Person[] array = new Person[10];
 
@@ -64,14 +64,18 @@ public class NewPerson {
     public static void deleteTeacher() {
         System.out.println("Nhập tên cần xóa");
         String name = scanner.nextLine();
+        boolean flag = false;
         for (int i = 0; i < array.length; i++) {
             if (array[i] != null) {
                 if (array[i].getName().equals(name) && array[i] instanceof Teacher) {
                     for (int j = i; j < array.length - 1; j++) {
                         array[j] = array[j + 1];
                     }
+                    flag = true;
                 }
             } else {
+                flag = false;
+                System.out.println("Không có teacher này");
                 break;
             }
         }
@@ -81,14 +85,18 @@ public class NewPerson {
     public static void deleteStudent() {
         System.out.println("Nhập tên học viên cần xóa: ");
         String name = scanner.nextLine();
+        boolean flag = false;
         for (int i = 0; i < array.length; i++) {
             if (array[i] != null) {
                 if (array[i].getName().equals(name) && array[i] instanceof Student) {
                     for (int j = i; j < array.length - 1; j++) {
                         array[j] = array[j + 1];
                     }
+                    flag = true;
                 }
             } else {
+                flag = false;
+                System.out.println("không có học viên này");
                 break;
             }
         }

@@ -129,6 +129,17 @@ public class MyLinkedList<E> {
         }
         return true;
     }
+    public void clear() {
+        Node temp = head;
+        Node holder;
+        for (int i = 0; temp != null; i++) {
+            holder = temp.next;
+            temp.next = null;
+            temp = holder;
+        }
+        temp.next = head = temp;
+        numNodes = 0;
+    }
     public MyLinkedList<E> clone() {
         if (numNodes == 0){
             throw new NullPointerException("LinkedList này null");
