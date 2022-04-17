@@ -19,9 +19,9 @@ public class ImplementTreeMap {
             }
         }
         System.out.println(treeMap);
-        Set<String> setkey = treeMap.keySet();
-        for (String item:setkey) {
-            System.out.println(item + " xuất hiện "+ treeMap.get(item) +" lần");
-        }
+//        Set<String> setkey = treeMap.keySet();
+//        for (String item:setkey) {
+//            System.out.println(item + " xuất hiện "+ treeMap.get(item) +" lần");
+//        }
     }
 }

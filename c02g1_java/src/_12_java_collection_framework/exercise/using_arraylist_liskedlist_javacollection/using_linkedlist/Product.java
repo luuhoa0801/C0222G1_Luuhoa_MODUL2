@@ -1,9 +1,12 @@
-package _12_java_collection_framework.exercise.using_arraylist_liskedlist_javacollection;
+package _12_java_collection_framework.exercise.using_arraylist_liskedlist_javacollection.using_linkedlist;
 
-public class Product implements Comparable<Product> {
+public class Product implements Comparable<Product>{
     private int id;
     private String name;
     private int price;
+
+    public Product() {
+    }
 
     public Product(int id, String name, int price) {
         this.id = id;
@@ -41,18 +44,17 @@ public class Product implements Comparable<Product> {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                '}'+ "\n" ;
+                '}';
     }
 
     @Override
     public int compareTo(Product o) {
-       if (this.getId() > o.getId()){
-           return 1;
-       }else if (this.getId() < o.getId()){
-           return -1;
-       }else {
-           return 0;
-       }
+        if (this.getId() > o.getId()){
+            return 1;
+        }else if (this.getId() < o.getId()){
+            return -1;
+        }else {
+            return 0;
+        }
     }
-
 }

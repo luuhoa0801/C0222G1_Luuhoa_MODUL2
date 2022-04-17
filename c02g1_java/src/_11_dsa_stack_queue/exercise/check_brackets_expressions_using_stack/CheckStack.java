@@ -10,8 +10,8 @@ public class CheckStack {
         System.out.println("Enter the string: ");
         String str = scanner.nextLine();
         String[] array = str.split("");
-//        String result = "";
         boolean flag = true;
+        String result = "";
         String left = "";
         for (int i = 0; i <array.length ; i++) {
             if (array[i].equals("(")){
@@ -19,24 +19,20 @@ public class CheckStack {
             }
             if (array[i].equals(")")){
                 if (bStack.isEmpty()){
-//                    result= "false";
-                    flag = false;
+                    result = "false";
+
                 }else if (array[i].equals(")") && bStack.pop().equals("(")){
-//                    result="true";
-                    flag = true;
+                    result = "false";
                 } else {
-                    flag = false;
+                    result = "true";
                 }
-//                left = bStack.pop();
-//                if (left.equals(array[i])){
-//                    result="false";
-//                }
             }
         }
-        if (bStack.isEmpty()){
-            System.out.println("True");
-        }else {
+        if (!bStack.isEmpty()){
             System.out.println("false");
+        }else {
+            System.out.println("true");
         }
+
     }
 }
