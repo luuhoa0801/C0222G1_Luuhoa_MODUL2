@@ -47,14 +47,24 @@ public class ProductManager {
     public void add() {
         System.out.println("Input id:");
         int id = Integer.parseInt(scanner.nextLine());
-        System.out.println("Input name");
-        String name = scanner.nextLine();
-        System.out.println("Input price");
-        int price = Integer.parseInt(scanner.nextLine());
-        arrayList.add(new Product(id,name,price));
-        Collections.sort(arrayList);
-        displayList();
+        boolean flag = true;
+        for (int i = 0; i <arrayList.size() ; i++) {
 
+            if (arrayList.get(i).getId() == id){
+                flag = false;
+            }
+        }
+        if (!flag){
+            System.out.println("ID này đã có");
+        }else {
+            System.out.println("Input name");
+            String name = scanner.nextLine();
+            System.out.println("Input price");
+            int price = Integer.parseInt(scanner.nextLine());
+            arrayList.add(new Product(id, name, price));
+            Collections.sort(arrayList);
+            displayList();
+        }
     }
     public  void remove(){
         System.out.println("Input id remove: ");
