@@ -7,7 +7,7 @@ public class SelectionSort {
             double currentMin = list[i];
             int currentMinIndex = i;
 
-            for (int j = 0; j <list.length ; j++) {
+            for (int j = i +1 ; j <list.length ; j++) {
                 if (currentMin > list[j]){
                     currentMin = list[j];
                     currentMinIndex = j;

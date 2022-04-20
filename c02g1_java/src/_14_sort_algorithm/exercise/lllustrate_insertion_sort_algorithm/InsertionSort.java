@@ -13,11 +13,8 @@ public class InsertionSort {
             key = list[i];
             j = i;
             while (j > 0 && key < list[j-1]){
-                int temp = list[j];
                 list[j] = list[j-1];
-                list[j-1] = temp;
                 j--;
-                System.out.println(Arrays.toString(list));
             }
             list[j] = key;
         }
