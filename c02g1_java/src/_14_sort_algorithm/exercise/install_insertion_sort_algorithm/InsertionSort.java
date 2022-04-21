@@ -6,7 +6,7 @@ public class InsertionSort {
     public static void insertionSort(int [] list){
         int key;
         int j;
-        for (int i = 0; i <list.length ; i++) {
+        for (int i = 1; i <list.length ; i++) {
             key = list[i];
             j = i;
             while (j > 0 && key < list[j-1]){
