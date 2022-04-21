@@ -21,7 +21,9 @@ public class ReadAndWrite {
            }
            return stringList;
 
-        } catch (IOException e){
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
             // buffereReader = null -> NullPointerException nên phải xét !=null mới .close
