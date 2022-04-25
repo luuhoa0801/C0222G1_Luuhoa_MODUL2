@@ -9,6 +9,7 @@ public class Main {
     public static List<Product> productList = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
     public static ReadAndWrite readAndWrite = new ReadAndWrite();
+    static final String FILE_NAME="src\\_17_io_binary_file_serialization\\exercise\\product_manager_saves_to_binary_files\\test.csv";
 
     public static void main(String[] args) {
         displayMenu();
@@ -18,7 +19,7 @@ public class Main {
         while (check){
             System.out.println(" 1: Hiển thị sản phẩm");
             System.out.println(" 2: Thêm sản phẩm ");
-            System.out.println(" 3: Tìm kiếm sản phẩm theo ID");
+            System.out.println(" 3: Tìm kiếm sản phẩm theo tên");
             System.out.println(" 4: Thoát menu ");
             System.out.print("Chọn: ");
             int choice = Integer.parseInt(scanner.nextLine());
@@ -40,7 +41,7 @@ public class Main {
     }
     public static void disPlay(){
         try {
-           productList= (List<Product>) readAndWrite.readFile("src\\_17_io_binary_file_serialization\\exercise\\product_manager_saves_to_binary_files\\test.csv");
+            productList = (List<Product>) readAndWrite.readFile(FILE_NAME);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,6 +51,12 @@ public class Main {
         displayMenu();
     }
     public static void addNewProduct(){
+
+        try {
+            productList = (List<Product>) readAndWrite.readFile(FILE_NAME);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println("Nhập ID: ");
         int id = Integer.parseInt(scanner.nextLine());
         boolean flag = true;
@@ -79,14 +86,24 @@ public class Main {
         }
     }
     public static void searchById(){
-        System.out.println("Nhập ID: ");
-        int id = Integer.parseInt(scanner.nextLine());
+
+        try {
+            productList = (List<Product>) readAndWrite.readFile(FILE_NAME);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        boolean check = true;
+        System.out.println("Nhập tên muốn tìm: ");
+        String name = scanner.nextLine();
         for (int i = 0; i <productList.size() ; i++) {
-            if (id==productList.get(i).getIdProduct()){
+            if (productList.get(i).getName().contains(name)){
+                check = false;
                 System.out.println(productList.get(i));
-            }else {
-                System.out.println("không có sản phẩm này");
+                break;
             }
+        }
+        if (check){
+            System.out.println("Không có sản phẩm này...");
         }
     }
 }
