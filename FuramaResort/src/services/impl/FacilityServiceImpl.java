@@ -5,6 +5,7 @@ import models.facility.House;
 import models.facility.Room;
 import models.facility.Villa;
 import services.FacilityService;
+import utils.ReadAndWrite;
 import utils.RegexData;
 
 import java.util.LinkedHashMap;
@@ -27,11 +28,13 @@ public class FacilityServiceImpl implements FacilityService {
             "(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)" +
             "0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]" +
             "|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\" +
-            "4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$." + "";
+            "4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
+
 
 
     @Override
     public void display() {
+
         for (Map.Entry<Facility,Integer> item: facilityIntegerMap.entrySet()) {
             System.out.println("Service " + item.getKey() + "Số lần thuê: " + item.getValue());
         }
@@ -39,7 +42,11 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void displayMaintenance() {
-
+        for (Map.Entry<Facility,Integer> item: facilityIntegerMap.entrySet()){
+            if (item.getValue() >= 5){
+                System.out.println("Service cần bảo trì: "+ item.getKey() + "số lần thuê" + item.getValue());
+            }
+        }
     }
     private String inputIdVilla(){
         System.out.println("Nhập id, mã dịch vụ Villa: ");
@@ -107,8 +114,9 @@ public class FacilityServiceImpl implements FacilityService {
 //            System.out.println("Đã có Villa này với ID đã nhập");
 //        } else {
 
-        String idFacility = inputIdVilla();
 
+
+        String idFacility = inputIdVilla();
         String nameService = inputName();
         int areaUse;
         while (true) {
@@ -192,10 +200,9 @@ public class FacilityServiceImpl implements FacilityService {
                 expenseRent, maxNumberPeople, styleRent,
                 standardVilla, areaPool, numberFloor);
         facilityIntegerMap.put(villa, 0);
-
         System.out.println("Đã thêm mới Villa thành công");
+        ReadAndWrite.writeFileFacility("src\\data\\facility\\villa.csv",facilityIntegerMap);
     }
-
 
 
     @Override
@@ -285,6 +292,7 @@ public class FacilityServiceImpl implements FacilityService {
                 expenseRent, maxNumberPeople, styleRent,
                 standardHouse, numberFloor);
         facilityIntegerMap.put(house, 0);
+
         System.out.println("Đã thêm mới House thành công");
     }
 

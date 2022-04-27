@@ -3,6 +3,7 @@ package services.impl;
 import models.person.Customer;
 import models.person.Employee;
 import services.CustomerService;
+import utils.ReadAndWrite;
 import utils.RegexData;
 
 import java.util.ArrayList;
@@ -11,14 +12,26 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CustomerServiceImpl implements CustomerService {
-    private static final String REGEX_DATE = "((0[13578]|1[02])[\\/.]31[\\/.](18|19|20)[0-9]{2})|((01|0[3-9]|1[1-2])" +
-            "[\\/.](29|30)[\\/.](18|19|20)[0-9]{2})|((0[1-9]|1[0-2])[\\/.](0[1-9]|1[0-9]|2[0-8])[\\/.]" +
-            "(18|19|20)[0-9]{2})|((02)[\\/.]29[\\/.](((18|19|20)(04|08|[2468][048]|[13579][26]))|2000))";
+    private static final String REGEX_DATE = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)" +
+            "(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)" +
+            "0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|" +
+            "[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))" +
+            "\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
     static List<Customer> customersList = new LinkedList<>();
     Scanner scanner = new Scanner(System.in);
 
     @Override
     public void display() {
+        List<String[]> strList = ReadAndWrite.readFile("src\\data\\customer.csv");
+        customersList.clear();
+        for ( String[] item: strList){
+            Customer customer = new Customer(item[0],item[1],item[2],Integer.parseInt(item[3]),
+                    Integer.parseInt(item[4]),item[5], item[6],item[7],item[8]);
+            customersList.add(customer);
+        }
+        for ( Customer customer: customersList){
+            System.out.println(customer);
+        }
         for (Customer customer: customersList ) {
             System.out.println(customer.toString());
         }
@@ -26,6 +39,17 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void addNew() {
+        List<String[]> strList = ReadAndWrite.readFile("src\\data\\customer.csv");
+        customersList.clear();
+        for ( String[] item: strList){
+            Customer customer = new Customer(item[0],item[1],item[2],Integer.parseInt(item[3]),
+                    Integer.parseInt(item[4]),item[5], item[6],item[7],item[8]);
+            customersList.add(customer);
+        }
+        for ( Customer customer: customersList){
+            System.out.println(customer);
+        }
+
         System.out.println("Nhập ID khách hàng: ");
         String idCustomer = scanner.nextLine();
         boolean flag = true;
@@ -41,7 +65,14 @@ public class CustomerServiceImpl implements CustomerService {
             System.out.println("Nhập tên khách hàng: ");
             String name = scanner.nextLine();
             System.out.println("Nhập tuổi khách hàng: ");
+//            String dateOfBirth = null;
+//            try{
+//                dateOfBirth = RegexData.regexAge(scanner.nextLine(),REGEX_DATE);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
             String dateOfBirth = RegexData.regexAge(scanner.nextLine(),REGEX_DATE);
+
             System.out.println("Nhập giới tính: 1:Nam   2:Nữ ");
             int choice = Integer.parseInt(scanner.nextLine());
             String gender;
@@ -83,6 +114,13 @@ public class CustomerServiceImpl implements CustomerService {
             Customer customer = new Customer(name, dateOfBirth, gender, idCard, phoneNumber,
                     email, idCustomer, typeOfCustomer, address);
             customersList.add(customer);
+            String line = "";
+            for (Customer item : customersList) {
+                line += item.getName() +","+item.getDateOfBirth()+","+item.getGender()+","+item.getIdCard()+","+
+                        item.getPhoneNumber()+","+item.getEmail()+","+item.getIdCustomer()+","+item.getTypeOfCustomer()
+                        +","+item.getAddress() +"\n";
+            }
+            ReadAndWrite.writeFile("src\\data\\customer.csv",line);
             System.out.println("Thêm khách hàng thành công !!!");
             display();
         }
@@ -90,13 +128,23 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void edit() {
+        List<String[]> strList = ReadAndWrite.readFile("src\\data\\customer.csv");
+        customersList.clear();
+        for ( String[] item: strList){
+            Customer customer = new Customer(item[0],item[1],item[2],Integer.parseInt(item[3]),
+                    Integer.parseInt(item[4]),item[5], item[6],item[7],item[8]);
+            customersList.add(customer);
+        }
+        for ( Customer customer: customersList){
+            System.out.println(customer);
+        }
         System.out.println("Nhập ID khách hàng: ");
         String id = scanner.nextLine();
 
         for (int i = 0; i <customersList.size() ; i++) {
             if (customersList.get(i).getIdCustomer().equals(id)){
-                customersList.remove(i);
-
+                System.out.println("Có khách hàng với ID này");
+//                customersList.remove(i);
                 System.out.println("Nhập tên khách hàng: ");
                 String name = scanner.nextLine();
                 System.out.println("Nhập tuổi khách hàng: ");
@@ -140,14 +188,21 @@ public class CustomerServiceImpl implements CustomerService {
                 String address = scanner.nextLine();
                 Customer customer = new Customer(name, dateOfBirth, gender, idCard, phoneNumber,
                         email, id, typeOfCustomer, address);
-                customersList.add(customer);
+                customersList.set(i,customer);
+                String line = "";
+                for (Customer item: customersList){
+                    line += item.getName() +","+item.getDateOfBirth()+","+item.getGender()+","+item.getIdCard()+","+
+                            item.getPhoneNumber()+","+item.getEmail()+","+item.getIdCustomer()+","+item.getTypeOfCustomer()
+                            +","+item.getAddress() +"\n";
+                }
+                ReadAndWrite.writeFile("src\\data\\customer.csv",line);
+
                 System.out.println("Cập nhật thông tin khách hàng thành công !!!");
                 break;
             }else {
                 System.out.println("Không có khách hàng này!!");
             }
         }
-
     }
 
     @Override

@@ -13,16 +13,26 @@ public class EmployeeServiceImpl implements EmployeeService {
     static List<Employee> employeeList = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
     private static final String REGEX_STR = "[A-Z][a-z]+";
-    private static final String REGEX_DATE = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)" +
-            "(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3" +
-            "(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$" +
-            "|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$." + "";
+    public static final String REGEX_DATE = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)" +
+            "(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)" +
+            "0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]" +
+            "|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4" +
+            "(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
+
     private String inputName(){
         return RegexData.regexStr(scanner.nextLine(),REGEX_STR,"Bạn đã nhập sai định dạng," +
                 " tên bắt đầu bằng chữ viết Hoa đầu tiên");
     }
     @Override
     public void display() {
+        List<String[]> strList = ReadAndWrite.readFile("src\\data\\employee.csv");
+        employeeList.clear();
+        for (String[] item: strList){
+            Employee employee = new Employee((item[0]),(item[1]),(item[2]),Integer.parseInt(item[3]),
+                    Integer.parseInt(item[4]), (item[5]),(item[6]),(item[7]),(item[8]),Integer.parseInt(item[9]));
+            employeeList.add(employee);
+        }
+
         for (Employee employee: employeeList) {
             System.out.println(employee.toString());
         }
@@ -46,7 +56,13 @@ public class EmployeeServiceImpl implements EmployeeService {
             String name = inputName();
 
             System.out.println("Nhập tuổi: ");
-            String dateOfBirth = RegexData.regexAge(scanner.nextLine(),REGEX_DATE);
+            String dateOfBirth = null;
+            try {
+                dateOfBirth = RegexData.regexAge(scanner.nextLine(), REGEX_DATE);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
 
 
             System.out.println("Nhập giới tính: 1:Nam   2:Nữ ");
@@ -142,22 +158,31 @@ public class EmployeeServiceImpl implements EmployeeService {
             Employee employee = new Employee(name,dateOfBirth,gender,idCard,phoneNumber,email,
                     idEmployee,level,position,salary);
             employeeList.add(employee);
+
 //            String line = name +","+ dateOfBirth +","+ gender +","+ idCard +","+ phoneNumber +","+ email +
 //                    ","+ idEmployee +","+ level +","+ position +","+ salary;
+            String line = "";
+            for ( Employee item: employeeList){
+                line += item.getName() +","+ item.getDateOfBirth() +","+item.getGender() +","+item.getIdCard()
+                        +","+ item.getPhoneNumber() +","+ item.getEmail()+
+                        ","+ item.getIdEmployee() +","+ item.getLevel() +","+ item.getPosition() +","+ item.getSalary() + "\n";
+            }
 
-            ReadAndWrite.writeFile("src\\data\\employee.csv",employeeList);
+            ReadAndWrite.writeFile("src\\data\\employee.csv",line);
+
             System.out.println("Thêm thành công !");
             display();
         }
-
     }
 
     @Override
     public void edit() {
         System.out.println("Nhập id nhân viên: ");
         String id = scanner.nextLine();
+        boolean check = true;
         for (int i = 0; i <employeeList.size() ; i++) {
             if (employeeList.get(i).getIdEmployee().equals(id) ){
+                check = false;
                 System.out.println("Đã có nhân viên với id này: ");
 //                employeeList.remove(i);
 
@@ -242,12 +267,20 @@ public class EmployeeServiceImpl implements EmployeeService {
                                                  id,level,position,salary);
                 employeeList.set(i, employee);
                 System.out.println("Cập nhật thành công thông tin !");
-                ReadAndWrite.writeFile("src\\data\\employee.csv",employeeList);
-                break;
 
-            }else {
-                System.out.println("Không có nhân viên này !!");
+                String line = "";
+                for ( Employee item: employeeList){
+                    line += item.getName() +","+ item.getDateOfBirth() +","+item.getGender() +","+item.getIdCard()
+                            +","+ item.getPhoneNumber() +","+ item.getEmail()+
+                            ","+ item.getIdEmployee() +","+ item.getLevel() +","+ item.getPosition()
+                            +","+ item.getSalary() + "\n";
+                }
+                ReadAndWrite.writeFile("src\\data\\employee.csv",line);
+                break;
             }
+        }
+        if (check){
+            System.out.println("Không có nhân viên này !!");
         }
 
     }

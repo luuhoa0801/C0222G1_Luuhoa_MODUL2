@@ -39,6 +39,8 @@ public class FuramaController {
                 case 6:
                     System.exit(6);
                     break;
+                default:
+                    System.out.println("Mời nhập lại: ");
             }
         }
     }
@@ -102,6 +104,11 @@ public class FuramaController {
                     break;
                 case 2:
                     addNewFacilityMainMenu();
+                case 3:
+                    facilityService.displayMaintenance();
+                    break;
+                case 4:
+                    displayMainMenu();
             }
         }
     }
@@ -115,15 +122,12 @@ public class FuramaController {
             switch (scanner.nextInt()){
                 case 1:
                     facilityService.addNewVilla();
-                    displayFacility();
                     break;
                 case 2:
                     facilityService.addNewHouse();
-                    displayFacility();
                     break;
                 case 3:
                     facilityService.addNewRoom();
-                    displayFacility();
                     break;
                 case 4:
                     displayFacility();
@@ -144,17 +148,20 @@ public class FuramaController {
             switch (scanner.nextInt()){
                 case 1:
                     bookingService.addBooking();
-                    displayBookingMenu();
+
                     break;
                 case 2:
                     bookingService.displayBooking();
-                    displayBookingMenu();
+
                     break;
                 case 3:
                     contractService.createNewContract();
                     break;
                 case 4:
                     contractService.displayListContract();
+                    break;
+                case 6:
+                    displayFacility();
                     break;
 
             }
