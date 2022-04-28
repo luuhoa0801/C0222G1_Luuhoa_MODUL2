@@ -4,7 +4,7 @@ import models.facility.Facility;
 
 import java.io.Serializable;
 
-public class Villa extends Facility  implements Serializable {
+public class Villa extends Facility  {
     private String standardVilla;
     private int areaPool;
     private int numberFloor;
@@ -53,9 +53,9 @@ public class Villa extends Facility  implements Serializable {
 
     @Override
     public String toString() {
-        return ", Villa{" +super.toString() +
+        return "Villa{" +
                 "standardVilla='" + standardVilla + '\'' +
-                ", areaFool=" + areaPool +
+                ", areaPool=" + areaPool +
                 ", numberFloor=" + numberFloor +
                 '}';
     }

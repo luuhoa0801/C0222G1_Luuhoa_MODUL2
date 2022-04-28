@@ -14,24 +14,24 @@ public class BookingServiceImpl implements BookingService {
     static List<Customer> customerList = new ArrayList<>();
     static Map<Facility,Integer> facilityIntegerMap = new LinkedHashMap<>();
     static Scanner scanner = new Scanner(System.in);
-    static {
-
-        customerList.add(new Customer("hòa","10/10/1990","nam",11111,121212,"hoa@gmail",
-                "1","haoa","QN"));
-        customerList.add(new Customer("hiền","15/10/1990","nữ",133333,22222,"hien@gmail",
-                "2","haoa","Dn"));
-        customerList.add(new Customer("hảo","20/10/1990","nam",14444,3333,"hao@gmail",
-                "3","haoa","SG"));
-        //idFacility, String nameService, double areaUse, int expenseRent, int maxNumberPeople,
-        //                 String styleRent, String standardVilla, double areaFool, int numberFloor
-        Villa villa = new Villa("1","villa1",100,10000,2,"vip",
-                "vip",50,3);
-        Villa villa1 = new Villa("2","villa2",80,20000,2,"vip",
-                "vip",80,2);
-
-        facilityIntegerMap.put(villa,0);
-        facilityIntegerMap.put(villa1,0);
-    }
+//    static {
+//
+//        customerList.add(new Customer("hòa","10/10/1990","nam",11111,"121212","hoa@gmail",
+//                "1","haoa","QN"));
+//        customerList.add(new Customer("hiền","15/10/1990","nữ",133333,"22222","hien@gmail",
+//                "2","haoa","Dn"));
+//        customerList.add(new Customer("hảo","20/10/1990","nam",14444,"3333","hao@gmail",
+//                "3","haoa","SG"));
+//        //idFacility, String nameService, double areaUse, int expenseRent, int maxNumberPeople,
+//        //                 String styleRent, String standardVilla, double areaFool, int numberFloor
+//        Villa villa = new Villa("1","villa1",100,10000,2,"vip",
+//                "vip",50,3);
+//        Villa villa1 = new Villa("2","villa2",80,20000,2,"vip",
+//                "vip",80,2);
+//
+//        facilityIntegerMap.put(villa,0);
+//        facilityIntegerMap.put(villa1,0);
+//    }
     public Set<Booking> sendBooking(){
         return bookingSet;
     }

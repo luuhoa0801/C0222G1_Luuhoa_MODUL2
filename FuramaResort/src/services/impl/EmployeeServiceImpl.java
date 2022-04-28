@@ -3,6 +3,7 @@ package services.impl;
 import models.person.Employee;
 import services.EmployeeService;
 import utils.ReadAndWrite;
+import utils.Regex;
 import utils.RegexData;
 
 import java.util.ArrayList;
@@ -12,24 +13,24 @@ import java.util.Scanner;
 public class EmployeeServiceImpl implements EmployeeService {
     static List<Employee> employeeList = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
-    private static final String REGEX_STR = "[A-Z][a-z]+";
-    public static final String REGEX_DATE = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)" +
-            "(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)" +
-            "0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]" +
-            "|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4" +
-            "(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
+//    public static final String REGEX_DATE = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)" +
+//            "(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)" +
+//            "0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]" +
+//            "|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4" +
+//            "(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
 
-    private String inputName(){
-        return RegexData.regexStr(scanner.nextLine(),REGEX_STR,"Bạn đã nhập sai định dạng," +
-                " tên bắt đầu bằng chữ viết Hoa đầu tiên");
-    }
+//    private static final String REGEX_STR = "[A-Z][a-z]+";
+//    private String inputName(){
+//        return RegexData.regexStr(scanner.nextLine(),REGEX_STR,"Bạn đã nhập sai định dạng," +
+//                " tên bắt đầu bằng chữ viết Hoa đầu tiên");
+//    }
     @Override
     public void display() {
         List<String[]> strList = ReadAndWrite.readFile("src\\data\\employee.csv");
         employeeList.clear();
         for (String[] item: strList){
             Employee employee = new Employee((item[0]),(item[1]),(item[2]),Integer.parseInt(item[3]),
-                    Integer.parseInt(item[4]), (item[5]),(item[6]),(item[7]),(item[8]),Integer.parseInt(item[9]));
+                    item[4], (item[5]),(item[6]),(item[7]),(item[8]),Integer.parseInt(item[9]));
             employeeList.add(employee);
         }
 
@@ -53,12 +54,12 @@ public class EmployeeServiceImpl implements EmployeeService {
             System.out.println("Đã có nhân viên này !!!");
         }else {
             System.out.println("Nhập tên: ");
-            String name = inputName();
+            String name = Regex.inputMyName();
 
             System.out.println("Nhập tuổi: ");
             String dateOfBirth = null;
             try {
-                dateOfBirth = RegexData.regexAge(scanner.nextLine(), REGEX_DATE);
+                dateOfBirth = RegexData.regexAge(scanner.nextLine(),Regex.REGEX_DATE);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -76,7 +77,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             System.out.println("Nhập chứng minh nhân dân: ");
             int idCard = Integer.parseInt(scanner.nextLine());
             System.out.println("Nhập số điện thoại: ");
-            int phoneNumber = Integer.parseInt(scanner.nextLine());
+            String phoneNumber = Regex.inputPhone();
             System.out.println("Nhập email: ");
             String email = scanner.nextLine();
 
@@ -187,9 +188,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 //                employeeList.remove(i);
 
                 System.out.println("Nhập tên nhân viên: ");
-                String name = scanner.nextLine();
+                String name = Regex.inputMyName();
                 System.out.println("Nhập tuổi nhân viên: ");
-                String dateOfBirth = RegexData.regexAge(scanner.nextLine(),REGEX_DATE);
+                String dateOfBirth = RegexData.regexAge(scanner.nextLine(),Regex.REGEX_DATE);
                 System.out.println("Nhập giới tính: 1:Nam   2:Nữ ");
                 String gender;
                 int choice = Integer.parseInt(scanner.nextLine());
@@ -200,8 +201,10 @@ public class EmployeeServiceImpl implements EmployeeService {
                 }
                 System.out.println("Nhập chứng minh nhân dân nhân viên: ");
                 int idCard = Integer.parseInt(scanner.nextLine());;
+
                 System.out.println("Nhập số điện thoại nhân viên: ");
-                int phoneNumber = Integer.parseInt(scanner.nextLine());;
+                String phoneNumber = Regex.inputPhone();
+
                 System.out.println("Nhập email nhân viên: ");
                 String email = scanner.nextLine();
                 System.out.println("Nhập trình độ:1:Trung cấp  2:Cao đẳng  3:Đại học  4:Sau đại học ");
@@ -287,6 +290,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void delete() {
+
         System.out.println("Nhập id nhân viên muốn xóa: ");
         String id = scanner.nextLine();
         boolean flag = true;

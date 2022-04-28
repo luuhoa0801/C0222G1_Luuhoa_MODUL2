@@ -161,7 +161,7 @@ public class FuramaController {
                     contractService.displayListContract();
                     break;
                 case 6:
-                    displayFacility();
+                    displayMainMenu();
                     break;
 
             }
