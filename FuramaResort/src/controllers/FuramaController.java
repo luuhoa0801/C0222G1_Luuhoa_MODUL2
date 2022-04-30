@@ -20,23 +20,23 @@ public class FuramaController {
             System.out.println("5.\t Promotion Management");
             System.out.println("6.\t Exit");
             System.out.print("Mời bạn chọn: ");
-            switch (scanner.nextInt()){
-                case 1:
+            switch (scanner.nextLine()){
+                case "1":
                     displayEmployee();
                     break;
-                case 2:
+                case "2":
                     displayCustomer();
                     break;
-                case 3:
+                case "3":
                     displayFacility();
                     break;
-                case 4:
+                case "4":
                     displayBookingMenu();
                     break;
-                case 5:
+                case "5":
                     displayPromotion();
                     break;
-                case 6:
+                case "6":
                     System.exit(6);
                     break;
                 default:
@@ -52,17 +52,17 @@ public class FuramaController {
             System.out.println("2.\t Add new employee");
             System.out.println("3.\t Edit employee");
             System.out.println("4.\t Return main menu");
-            switch (scanner.nextInt()){
-                case 1:
+            switch (scanner.nextLine()){
+                case "1":
                     employeeService.display();
                     break;
-                case 2:
+                case "2":
                     employeeService.addNew();
                     break;
-                case 3:
+                case "3":
                     employeeService.edit();
                     break;
-                case 4:
+                case "4":
                     displayMainMenu();
                     break;
             }
@@ -75,19 +75,21 @@ public class FuramaController {
             System.out.println("2.\t Add new Customer ");
             System.out.println("3.\t Edit Customer ");
             System.out.println("4.\t Return main menu");
-            switch (scanner.nextInt()){
-                case 1:
+            switch (scanner.nextLine()){
+                case "1":
                     customerService.display();
                     break;
-                case 2:
+                case "2":
                     customerService.addNew();
                     break;
-                case 3:
+                case "3":
                     customerService.edit();
                     break;
-                case 4:
+                case "4":
                     displayMainMenu();
                     break;
+                default:
+                    System.out.println("Mời nhập lại");
             }
         }
     }
@@ -98,17 +100,19 @@ public class FuramaController {
             System.out.println("2.\t Add new Facility  ");
             System.out.println("3.\t Display list Facility Maintain  ");
             System.out.println("4.\t Return main menu");
-            switch (scanner.nextInt()){
-                case 1:
+            switch (scanner.nextLine()){
+                case "1":
                     facilityService.display();
                     break;
-                case 2:
+                case "2":
                     addNewFacilityMainMenu();
-                case 3:
+                case "3":
                     facilityService.displayMaintenance();
                     break;
-                case 4:
+                case "4":
                     displayMainMenu();
+                default:
+                    System.out.println("Mời nhập lại");
             }
         }
     }
@@ -119,19 +123,21 @@ public class FuramaController {
             System.out.println("2.\t Add New House ");
             System.out.println("3.\t Add New Room ");
             System.out.println("4.\t Back to menu  ");
-            switch (scanner.nextInt()){
-                case 1:
+            switch (scanner.nextLine()){
+                case "1":
                     facilityService.addNewVilla();
                     break;
-                case 2:
+                case "2":
                     facilityService.addNewHouse();
                     break;
-                case 3:
+                case "3":
                     facilityService.addNewRoom();
                     break;
-                case 4:
+                case "4":
                     displayFacility();
                     break;
+                default:
+                    System.out.println("Mời nhập lại:");
             }
         }
     }
@@ -145,22 +151,22 @@ public class FuramaController {
             System.out.println("4.\tDisplay list contracts ");
             System.out.println("5.\tEdit contracts ");
             System.out.println("6.\t Return main menu");
-            switch (scanner.nextInt()){
-                case 1:
+            switch (scanner.nextLine()){
+                case "1":
                     bookingService.addBooking();
 
                     break;
-                case 2:
+                case "2":
                     bookingService.displayBooking();
 
                     break;
-                case 3:
+                case "3":
                     contractService.createNewContract();
                     break;
-                case 4:
+                case "4":
                     contractService.displayListContract();
                     break;
-                case 6:
+                case "6":
                     displayMainMenu();
                     break;
 
@@ -172,8 +178,8 @@ public class FuramaController {
             System.out.println("1.\tDisplay list customers use service");
             System.out.println("2.\tDisplay list customers get voucher");
             System.out.println("3.\t Return main menu");
-            switch (scanner.nextInt()){
-                case 1:
+            switch (scanner.nextLine()){
+                case "1":
             }
         }
     }

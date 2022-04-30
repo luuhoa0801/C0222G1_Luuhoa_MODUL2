@@ -202,7 +202,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 System.out.println("Nhập chứng minh nhân dân nhân viên: ");
                 int idCard = Integer.parseInt(scanner.nextLine());;
 
-                System.out.println("Nhập số điện thoại nhân viên: ");
+                System.out.println("Nhập số điện thoại nhân viên: ( bắt đầu bằng số 0 + 9 số ");
                 String phoneNumber = Regex.inputPhone();
 
                 System.out.println("Nhập email nhân viên: ");

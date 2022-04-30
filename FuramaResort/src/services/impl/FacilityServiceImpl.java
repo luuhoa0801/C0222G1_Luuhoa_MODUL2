@@ -68,7 +68,7 @@ public class FacilityServiceImpl implements FacilityService {
         int areaUse;
         while (true) {
             try {
-                System.out.println("Nhập diện tích sử dụng: ");
+                System.out.println("Nhập diện tích sử dụng: ( >30 ) ");
                 areaUse = Integer.parseInt(scanner.nextLine());
                 if (areaUse > 30) {
                     break;
@@ -116,7 +116,7 @@ public class FacilityServiceImpl implements FacilityService {
         int areaPool;
         while (true) {
             try {
-                System.out.println("Nhập diện tích hồ bơi: ");
+                System.out.println("Nhập diện tích hồ bơi: ( >30 ) ");
                 areaPool = Integer.parseInt(scanner.nextLine());
                 if (areaPool > 30) {
                     break;
@@ -182,7 +182,7 @@ public class FacilityServiceImpl implements FacilityService {
         int areaUse;
         while (true) {
             try {
-                System.out.println("Nhập diện tích sử dụng: ");
+                System.out.println("Nhập diện tích sử dụng: ( >30) ");
                 areaUse = Integer.parseInt(scanner.nextLine());
                 if (areaUse > 30) {
                     break;
@@ -281,7 +281,7 @@ public class FacilityServiceImpl implements FacilityService {
         int areaUse;
         while (true) {
             try {
-                System.out.println("Nhập diện tích sử dụng: ");
+                System.out.println("Nhập diện tích sử dụng: ( >30 )");
                 areaUse = Integer.parseInt(scanner.nextLine());
                 if (areaUse > 30) {
                     break;

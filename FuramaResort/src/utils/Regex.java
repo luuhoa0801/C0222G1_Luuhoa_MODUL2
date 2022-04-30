@@ -24,7 +24,7 @@ public class Regex {
                 "ko quá 2 dấu cách");
     }
     public static String inputIdRom() {
-        System.out.println("Nhập id, mã dịch vụ Rom: ");
+        System.out.println("Nhập id, mã dịch vụ Rom: ( SVRO-XXXX ) ");
         return RegexData.regexStr(scanner.nextLine(), REGEX_ID_ROM, "Bạn đã nhập sai định dạng," +
                 "phải có dạng SVRO-XXXX");
     }
@@ -32,7 +32,7 @@ public class Regex {
         return RegexData.regexStr(scanner.nextLine(),REGEX_PHONE,"Bạn đã nhập sai định dạng,phải bắt đầu từ số 0");
     }
     public static String inputIdVilla() {
-        System.out.println("Nhập id, mã dịch vụ Villa: ");
+        System.out.println("Nhập id, mã dịch vụ Villa: ( SVVL-XXXX ) ");
         return RegexData.regexStr(scanner.nextLine(), REGEX_ID_VILLA, "Bạn đã nhập sai định dạng," +
                 "phải có dạng SVVL-XXXX");
     }
@@ -48,13 +48,13 @@ public class Regex {
     }
 
     public static String inputStyleRent() {
-        System.out.println("Nhập kiểu thuê: ");
+        System.out.println("Nhập kiểu thuê: ( Day  Month  Year ");
         return RegexData.regexStr(scanner.nextLine(), REGEX_STR, "Bạn đã nhập sai định dạng," +
                 " kiểu thuê bắt đầu bằng chữ viết Hoa đầu tiên");
     }
 
     public static String inputStandard() {
-        System.out.println("Nhập tiêu chuẩn phòng: ");
+        System.out.println("Nhập tiêu chuẩn phòng:( Vip  Nomarl ");
         return RegexData.regexStr(scanner.nextLine(), REGEX_STR, "Bạn đã nhập sai định dạng," +
                 " tiêu chuẩn phòng bắt đầu bằng chữ viết Hoa đầu tiên");
     }
