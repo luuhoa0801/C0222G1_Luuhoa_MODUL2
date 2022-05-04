@@ -79,7 +79,13 @@ public abstract class Person {
                 ", email='" + email + '\'' ;
     }
 
-    public static void main(String[] args) {
+    public String getLine(){
 
+        return name + "," +
+                dateOfBirth + "," +
+                gender + "," +
+                idCard + "," +
+                phoneNumber + "," +
+                email;
     }
 }

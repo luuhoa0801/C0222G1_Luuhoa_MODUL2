@@ -1,12 +1,12 @@
 package services;
 
 public interface Service {
-    public void display();
+     void display();
 
-    public void addNew();
+     void addNew();
 
-    public void edit();
+     void edit();
 
-    public void delete();
+     void delete();
 
 }

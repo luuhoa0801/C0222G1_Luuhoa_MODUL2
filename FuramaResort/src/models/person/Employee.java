@@ -5,8 +5,10 @@ public class Employee extends Person {
     private String level;
     private String position;
     private int salary;
+
     public Employee() {
     }
+
     public Employee(String idEmployee ,String level, String position, int salary) {
         this.idEmployee = idEmployee;
         this.level = level;
@@ -68,5 +70,10 @@ public class Employee extends Person {
                 ", position='" + position + '\'' +
                 ", salary=" + salary +
                 '}';
+    }
+
+    @Override
+    public String getLine() {
+        return super.getLine() + "," + idEmployee + "," + level + "," + position + "," + salary;
     }
 }

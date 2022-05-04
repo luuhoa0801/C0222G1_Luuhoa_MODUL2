@@ -7,23 +7,19 @@ import models.person.Customer;
 import services.BookingService;
 import utils.BookingComparator;
 
+
 import java.util.*;
 
 public class BookingServiceImpl implements BookingService {
     static Set<Booking> bookingSet = new TreeSet<>(new BookingComparator());
-    static List<Customer> customerList = new ArrayList<>();
     static Map<Facility,Integer> facilityIntegerMap = new LinkedHashMap<>();
     static Scanner scanner = new Scanner(System.in);
+    public static List<Customer> customersList = CustomerServiceImpl.getCustomerList();
+    static final String FILE_BOOKING= "src\\data\\booking.csv";
+
     static {
 
-        customerList.add(new Customer("hòa","10/10/1990","nam",11111,"121212","hoa@gmail",
-                "1","haoa","QN"));
-        customerList.add(new Customer("hiền","15/10/1990","nữ",133333,"22222","hien@gmail",
-                "2","haoa","Dn"));
-        customerList.add(new Customer("hảo","20/10/1990","nam",14444,"3333","hao@gmail",
-                "3","haoa","SG"));
-        //idFacility, String nameService, double areaUse, int expenseRent, int maxNumberPeople,
-        //                 String styleRent, String standardVilla, double areaFool, int numberFloor
+
         Villa villa = new Villa("1","villa1",100,10000,2,"vip",
                 "vip",50,3);
         Villa villa1 = new Villa("2","villa2",80,20000,2,"vip",
@@ -51,6 +47,13 @@ public class BookingServiceImpl implements BookingService {
         bookingSet.add(booking);
         System.out.println("Đã booking thành công...");
 
+
+        for (Map.Entry<Facility,Integer> item: facilityIntegerMap.entrySet()) {
+            if (facilityIntegerMap.containsKey(facility)){         // xet neu co thì tăng value lên 1
+                facilityIntegerMap.put(facility,item.getValue()+1);
+            }
+        }
+
     }
 
     @Override
@@ -62,14 +65,14 @@ public class BookingServiceImpl implements BookingService {
     }
     public static Customer chooseCustomer(){
         System.out.println("Danh sách khách hàng: ");
-        for (Customer customer: customerList){
+        for (Customer customer: customersList){
             System.out.println(customer.toString());
         }
         boolean check = true;
         System.out.println("Nhập id khách hàng: ");
         String id = scanner.nextLine();
         while (check){
-            for (Customer customer:customerList){
+            for (Customer customer:customersList){
                 if (customer.getIdCustomer().equals(id)){
                     check = false;
                     return customer;

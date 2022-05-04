@@ -1,5 +1,7 @@
 package models.facility;
 
+import java.util.Objects;
+
 public abstract class Facility {
     private String idFacility;
     private String nameService;
@@ -7,6 +9,19 @@ public abstract class Facility {
     private int expenseRent;
     private int maxNumberPeople;
     private String styleRent;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Facility facility = (Facility) o;
+        return Objects.equals(idFacility, facility.idFacility);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idFacility);
+    }
 
     public Facility() {
     }

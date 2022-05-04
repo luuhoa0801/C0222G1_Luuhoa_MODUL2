@@ -27,7 +27,7 @@ public class RegexData {
                 if (Pattern.matches(regex,temp)){
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     LocalDate age = LocalDate.parse(temp,formatter);
-                    LocalDate now = LocalDate.now();
+                    LocalDate now = LocalDate.now();    // Lay thoi gian hien tai
                     int current = Period.between(age,now).getYears();
                     if (current < 100 && current > 18){
                         check = false;

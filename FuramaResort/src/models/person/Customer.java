@@ -54,4 +54,9 @@ public class Customer extends Person {
                 ", address='" + address + '\'' +
                 '}';
     }
+
+    @Override
+    public String getLine() {
+        return super.getLine() + "," + idCustomer + "," + typeOfCustomer + "," + address;
+    }
 }

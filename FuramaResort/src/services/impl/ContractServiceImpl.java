@@ -30,7 +30,7 @@ public class ContractServiceImpl  implements ContractService {
             int totalFee = Integer.parseInt(scanner.nextLine());
             Contract contract = new Contract(id, booking, moneyDeposit, totalFee, customer);
             contractList.add(contract);
-            System.out.println("Đã tạp hợp đồng thành công!!!" + contract.toString());
+            System.out.println("Đã tạo hợp đồng thành công!!!" + contract.toString());
         }
     }
     @Override
