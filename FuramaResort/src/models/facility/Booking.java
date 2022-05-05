@@ -6,18 +6,18 @@ public class Booking {
     private String idBooking;
     private String startDate;
     private String endDate;
-    private Customer customer;
-    private Facility facility;
+    private String idCustomer;
+    private String idFacility;
 
     public Booking() {
     }
 
-    public Booking(String idBooking, String startDate, String endDate, Customer customer, Facility facility) {
+    public Booking(String idBooking, String startDate, String endDate, String idCustomer, String idFacility) {
         this.idBooking = idBooking;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.customer = customer;
-        this.facility = facility;
+        this.idCustomer = idCustomer;
+        this.idFacility = idFacility;
     }
 
     public String getIdBooking() {
@@ -44,20 +44,20 @@ public class Booking {
         this.endDate = endDate;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public String getIdCustomer() {
+        return idCustomer;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setIdCustomer(String idCustomer) {
+        this.idCustomer = idCustomer;
     }
 
-    public Facility getFacility() {
-        return facility;
+    public String getIdFacility() {
+        return idFacility;
     }
 
-    public void setFacility(Facility facility) {
-        this.facility = facility;
+    public void setIdFacility(String idFacility) {
+        this.idFacility = idFacility;
     }
 
     @Override
@@ -65,8 +65,11 @@ public class Booking {
         return "idBooking=" + idBooking +
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
-                ", customer=" + customer +
-                ", facility=" + facility ;
+                ", customer=" + idCustomer +
+                ", facility=" +  idFacility;
 
+    }
+    public String getLineBooking(){
+        return idBooking + "," + startDate + "," + endDate + "," + idCustomer + "," + idFacility ;
     }
 }

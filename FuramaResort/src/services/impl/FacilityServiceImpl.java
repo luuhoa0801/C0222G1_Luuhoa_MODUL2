@@ -4,6 +4,7 @@ import models.facility.Facility;
 import models.facility.House;
 import models.facility.Room;
 import models.facility.Villa;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import services.FacilityService;
 import utils.ReadAndWrite;
 import utils.Regex;
@@ -13,15 +14,24 @@ import javax.print.DocFlavor;
 import java.util.*;
 
 public class FacilityServiceImpl implements FacilityService {
-    private static Map<Facility, Integer> facilityIntegerMap = new LinkedHashMap<>();
+    private Map<Facility, Integer> facilityIntegerMap = new LinkedHashMap<>();
     private static Scanner scanner = new Scanner(System.in);
+
 //
 //    private static List<Villa> villaList = new ArrayList<>();
 //    private static List<House> houseList = new ArrayList<>();
 //    private static List<Room> roomList = new ArrayList<>();
     private static List<String[]> facilityList = new ArrayList<>();
-    static final String FILE_BOOKING = "src\\data\\booking.csv";
     static final String FILE_FACILITY = "src\\data\\facility\\facility.csv";
+
+    public void setFacilityIntegerMap(Map<Facility, Integer> facilityIntegerMap) {
+        this.facilityIntegerMap = facilityIntegerMap;
+    }
+
+    public Map<Facility, Integer> getFacilityIntegerMap() {
+        return facilityIntegerMap;
+    }
+
     @Override
     public void display() {
         facilityList = ReadAndWrite.readFile(FILE_FACILITY);
@@ -44,7 +54,6 @@ public class FacilityServiceImpl implements FacilityService {
                         , Integer.parseInt(item[4]), item[5], item[6]);
                 facilityIntegerMap.put(room,Integer.parseInt(item[7]));
             }
-
         }
 
 //        displayVilla();
@@ -357,6 +366,16 @@ public class FacilityServiceImpl implements FacilityService {
                     + "," + maxNumberPeople + "," + styleRent + "," + freeServiceIncluded;
         ReadAndWrite.writeFile(FILE_FACILITY,line + ",0");
     }
+    public Facility getFacility( String id){
+        for ( Map.Entry<Facility, Integer> item: facilityIntegerMap.entrySet()) {
+            if (item.getKey().getIdFacility().equals(id)){
+                return item.getKey();
+            }
+        }return null;
+    }
+}
+
+
 
 //    @Override
 //    public void displayHouse() {
@@ -399,5 +418,5 @@ public class FacilityServiceImpl implements FacilityService {
 //        }
 //
 //    }
-}
+
 

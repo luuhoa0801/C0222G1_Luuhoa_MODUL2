@@ -80,7 +80,6 @@ public abstract class Person {
     }
 
     public String getLine(){
-
         return name + "," +
                 dateOfBirth + "," +
                 gender + "," +
@@ -88,4 +87,6 @@ public abstract class Person {
                 phoneNumber + "," +
                 email;
     }
+
+
 }

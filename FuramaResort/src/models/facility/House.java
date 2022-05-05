@@ -41,4 +41,7 @@ public class House  extends Facility {
                 ", numberFloor=" + numberFloor +
                 '}';
     }
+    public String goLineHouse(){
+        return super.goLineFacility() + "," + standardHouse + "," + numberFloor;
+    }
 }

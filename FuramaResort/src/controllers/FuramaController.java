@@ -7,6 +7,11 @@ import java.util.Scanner;
 public class FuramaController {
     static Scanner scanner = new Scanner(System.in);
     static boolean check = true;
+    public static CustomerServiceImpl customerService = new CustomerServiceImpl();
+    public static EmployeeServiceImpl  employeeService = new EmployeeServiceImpl();
+    public static FacilityServiceImpl facilityService = new FacilityServiceImpl();
+    public static BookingServiceImpl bookingService = new BookingServiceImpl();
+    public static  ContractServiceImpl contractService = new ContractServiceImpl();
 
     public static void main(String[] args) {
         displayMainMenu();
@@ -47,7 +52,7 @@ public class FuramaController {
     }
 
     public static void displayEmployee() {
-        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+
         while (check) {
             System.out.println("1.\t Display list employees");
             System.out.println("2.\t Add new employee");
@@ -70,7 +75,7 @@ public class FuramaController {
     }
 
     public static void displayCustomer() {
-        CustomerServiceImpl customerService = new CustomerServiceImpl();
+
         while (check) {
             System.out.println("1.\t Display list Customer ");
             System.out.println("2.\t Add new Customer ");
@@ -100,7 +105,7 @@ public class FuramaController {
     }
 
     public static void displayFacility() {
-        FacilityServiceImpl facilityService = new FacilityServiceImpl();
+
         while (check) {
             System.out.println("1.\t Display list Facility  ");
             System.out.println("2.\t Add new Facility  ");
@@ -124,7 +129,6 @@ public class FuramaController {
     }
 
     public static void addNewFacilityMainMenu() {
-        FacilityServiceImpl facilityService = new FacilityServiceImpl();
         while (check) {
             System.out.println("1.\t Add New Villa ");
             System.out.println("2.\t Add New House ");
@@ -149,8 +153,7 @@ public class FuramaController {
     }
 
     public static void displayBookingMenu() {
-        BookingServiceImpl bookingService = new BookingServiceImpl();
-        ContractServiceImpl contractService = new ContractServiceImpl();
+
         while (check) {
             System.out.println("1.\t Add new booking  ");
             System.out.println("2.\tDisplay list booking  ");

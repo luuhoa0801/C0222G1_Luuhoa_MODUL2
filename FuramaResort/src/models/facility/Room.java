@@ -29,4 +29,7 @@ public class Room extends Facility {
                 "freeServiceIncluded='" + freeServiceIncluded + '\'' +
                 '}'+'\'';
     }
+    public String goLineRoom(){
+        return super.goLineFacility() + "," + freeServiceIncluded;
+    }
 }

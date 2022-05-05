@@ -95,4 +95,13 @@ public abstract class Facility {
                 ", styleRent='" + styleRent + '\'' +
                 '}';
     }
+    public String goLineFacility(){
+        return idFacility + "," +
+                nameService+ "," +
+                areaUse + "," +
+                expenseRent + "," +
+                maxNumberPeople+ "," +
+                styleRent;
+    }
+
 }

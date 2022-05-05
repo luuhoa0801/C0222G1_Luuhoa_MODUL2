@@ -206,6 +206,13 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    public Customer getCustomer (String idCustomer) {
+        for (Customer customer : customersList)
+            if (customer.getIdCustomer().equals(idCustomer))
+                return customer;
+        return null;
+    }
+
     @Override
     public void delete() {
         customersList = getCustomerList();

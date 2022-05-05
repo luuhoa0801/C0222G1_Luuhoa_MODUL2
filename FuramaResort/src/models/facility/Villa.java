@@ -59,4 +59,9 @@ public class Villa extends Facility  {
                 ", numberFloor=" + numberFloor +
                 '}';
     }
+    public String goLineVilla(){
+        return super.goLineFacility() + "," +standardVilla
+                + "," + areaPool
+                + "," + numberFloor;
+    }
 }
