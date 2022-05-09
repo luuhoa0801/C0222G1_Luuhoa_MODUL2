@@ -112,7 +112,6 @@ public class CustomerServiceImpl implements CustomerService {
             String address = scanner.nextLine();
             Customer customer = new Customer(name, dateOfBirth, gender, idCard, phoneNumber,
                     email, idCustomer, typeOfCustomer, address);
-
             ReadAndWrite.writeFile(FILE_CUSTOMER,customer.getLine());
             System.out.println("Thêm khách hàng thành công !!!");
             display();

@@ -41,15 +41,18 @@ public class FacilityServiceImpl implements FacilityService {
         House house;
         Room room;
         for (String[] item: facilityList) {
-            if (item[0].substring(0, item[0].indexOf("-")).equals("SVVL")){
+            if (item[0].contains("SVVL")){
                 villa = new Villa(item[0], item[1], Integer.parseInt(item[2]), Integer.parseInt(item[3]),
                         Integer.parseInt(item[4]), item[5], item[6], Integer.parseInt(item[7]), Integer.parseInt(item[8]));
                 facilityIntegerMap.put(villa,Integer.parseInt(item[9]));
-            }else if (item[0].substring(0, item[0].indexOf("-")).equals("SVHO")){
+            }else if (item[0].contains("SVHO")){
                 house = new House(item[0], item[1], Integer.parseInt(item[2]), Integer.parseInt(item[3]), Integer.parseInt(item[4]),
                         item[5], item[6], Integer.parseInt(item[7]));
                 facilityIntegerMap.put(house,Integer.parseInt(item[8]));
-            }else if(item[0].substring(0, item[0].indexOf("-")).equals("SVRO")){
+
+                // item[0].substring(0, item[0].indexOf("-")).equals("SVRO")    TACH CHUOI
+
+            }else if(item[0].contains("SVRO")){
                 room = new Room(item[0], item[1], Integer.parseInt(item[2]), Integer.parseInt(item[3])
                         , Integer.parseInt(item[4]), item[5], item[6]);
                 facilityIntegerMap.put(room,Integer.parseInt(item[7]));

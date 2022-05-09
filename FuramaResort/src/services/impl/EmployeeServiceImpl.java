@@ -57,7 +57,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             System.out.println("Đã có nhân viên này !!!");
         }else {
             System.out.println("Nhập tên: ");
-            String name = Regex.inputName();
+            String name = Regex.inputMyName();
 
             System.out.println("Nhập tuổi: ");
             String dateOfBirth = null;

@@ -5,7 +5,7 @@ public interface Service {
 
      void addNew();
 
-     void edit();
+      void edit();
 
      void delete();
 

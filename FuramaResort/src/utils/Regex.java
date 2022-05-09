@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Regex {
     static Scanner scanner = new Scanner(System.in);
+    //  Luu hoa...regex name
     public static final String REGEX_NAME = "^([A-Za-z]+)((\\s{1}[A-Za-z]+){1,})$";
     private static final String REGEX_ID_ROM = "^(SVRO)[-][0-9]{4}$";
     private static final String REGEX_PHONE = "^(84|0[3|5|7|8|9])+([0-9]{8})$";
